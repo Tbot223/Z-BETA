@@ -1,6 +1,6 @@
 const scriptName = "주식 2";
 var allsee = new Array(1000).join(String.fromCharCode(847));
-const AD = ['주가가 올라갈수록 변동폭이 커집니다!', '환전기능이 생길꺼라는 소문이 있다던데?', '도움말은 "$주식봇 도움말" !'];
+const AD = ['주가가 올라갈수록 변동폭이 커집니다!', '환전기능이 생길꺼라는 소문이 있다던데?', '도움말은 "$주식봇 도움말" !', '주가옆에 [] 안에 있는 숫자는 변동폭이랍니다!'];
 Z2ren = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 /**
  * (string) room
@@ -88,11 +88,18 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
             RP4 = DataBase.getDataBase('RP4');
             RP5 = DataBase.getDataBase('RP5');
             RP6 = DataBase.getDataBase('RP6');
-            replier.reply('[ 주가 ]\nApple : '+RP1+'\n-------------\nSamsung : '+RP2+'\n-------------\nMicrosoft : '+RP3+'\n-------------\nIntel : '+RP4+'\n-------------\nNvidia : '+RP5+'\n-------------\nAmazon : '+RP6);
+            RO1 = DataBase.getDataBase('RO1');
+            RO2 = DataBase.getDataBase('RO2');
+            RO3 = DataBase.getDataBase('RO3');
+            RO4 = DataBase.getDataBase('RO4');
+            RO5 = DataBase.getDataBase('RO5');
+            RO6 = DataBase.getDataBase('RO6');
+            replier.reply('[ 주가 ]\nApple : '+RP1+' [ '+RO1+' ]'+'\n-------------\nSamsung : '+RP2+' [ '+RO2+' ]'+'\n-------------\nMicrosoft : '+RP3+' [ '+RO3+' ]'+'\n-------------\nIntel : '+RP4+' [ '+RO4+' ]'+'\n-------------\nNvidia : '+RP5+' [ '+RO5+' ]'+'\n-------------\nAmazon : '+RP6+' [ '+RO6+' ]');
             break;
           
           case '도움말' :
-            replier.reply('[ 주식봇 도움말 ]\n\n'+allsee+'$주식봇 [내정보 , 정보 (플레이어 이름), 주가, code]');
+            let ad = AD[Math.floor(Math.random() * 4)]
+            replier.reply('[ 주식봇 도움말 ]\n\n'+allsee+'$주식봇 [내정보 , 정보 (플레이어 이름), 주가, code]\n$구매 (주식 종류) (구매할 수)\n+[ AD ]\n'+ad);
             break;
 
           case 'code' :
@@ -103,6 +110,169 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
             replier.reply('해당 명령어는 존재하지 않습니다, 다시 입력해주세요.');
             break;
       }
+    }
+  }
+  if (message[0] == '$구매') {
+    if (!joinbot.includes(sender)) {
+      return;
+    } else if (joinbot.includes(sender)) {
+        RP1 = Number(DataBase.getDataBase('RP1'));
+        RP2 = Number(DataBase.getDataBase('RP2'));
+        RP3 = Number(DataBase.getDataBase('RP3'));
+        RP4 = Number(DataBase.getDataBase('RP4'));
+        RP5 = Number(DataBase.getDataBase('RP5'));
+        RP6 = Number(DataBase.getDataBase('RP6'));
+        money = Number(DataBase.getDataBase('Z2 '+sender+' is money'));
+        Apple = Number(DataBase.getDataBase('Z2 '+sender+' is Apple'));
+        Samsung = Number(DataBase.getDataBase('Z2 '+sender+' is Samsung'));
+        Microsoft = Number(DataBase.getDataBase('Z2 '+sender+' is Microsoft'));
+        Intel = Number(DataBase.getDataBase('Z2 '+sender+' is Intel'));
+        Nvidia = Number(DataBase.getDataBase('Z2 '+sender+' is Nvidia'));
+        Amazon = Number(DataBase.getDataBase('Z2 '+sender+' is Amazon'));
+        switch(message[1]) {
+
+            case 'Apple' :
+              cutting = Number(msg.replace('$구매 Apple ', ''));
+              if (isNaN(Number(cutting))) {
+                  replier.reply('숫자를 입력해주세요.');
+                  return;
+              } else if (money < Number(RP1*cutting)) {
+                  replier.reply('돈이 부족합니다.');
+                  return;
+              } else if (Apple+cutting >= 500) {
+                  replier.reply('500개 이상 보유 불가능합니다.');
+                  return;
+              } else if (cutting > 500) {
+                  replier.reply('한번에 500개 까지만 살수 있습니다.');
+                  return;
+              } else if (money >= Number(RP1*cutting)) {
+                  DataBase.setDataBase('Z2 '+sender+' is money', money-RP1*cutting);
+                  DataBase.setDataBase('Z2 '+sender+' is Apple', Apple+cutting);
+                  replier.reply('주식 "Apple"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  return;
+              } else {
+                  break;
+              }
+            
+            case 'Samsung' :
+              cutting = Number(msg.replace('$구매 Samsung ', ''));
+              if (isNaN(Number(cutting))) {
+                  replier.reply('숫자를 입력해주세요.');
+                  return;
+              } else if (money < Number(RP2*cutting)) {
+                  replier.reply('돈이 부족합니다.');
+                  return;
+              } else if (Samsung+cutting >= 500) {
+                  replier.reply('500개 이상 보유 불가능합니다.');
+                  return;
+              } else if (cutting > 500) {
+                  replier.reply('한번에 500개 까지만 살수 있습니다.');
+                  return;
+              } else if (money >= Number(RP2*cutting)) {
+                  DataBase.setDataBase('Z2 '+sender+' is money', money-RP2*cutting);
+                  DataBase.setDataBase('Z2 '+sender+' is Samsung', Samsung+cutting);
+                  replier.reply('주식 "Samsung"을 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  return;
+              } else {
+                  break;
+              }
+
+            case 'Microsoft' :
+              cutting = Number(msg.replace('$구매 Microsoft ', ''));
+              if (isNaN(Number(cutting))) {
+                  replier.reply('숫자를 입력해주세요.');
+                  return;
+              } else if (money < Number(RP3*cutting)) {
+                  replier.reply('돈이 부족합니다.');
+                  return;
+              } else if (Microsoft+cutting >= 500) {
+                  replier.reply('500개 이상 보유 불가능합니다.');
+                  return;
+              } else if (cutting > 500) {
+                replier.reply('한번에 500개 까지만 살수 있습니다.');
+                return;
+              } else if (money >= Number(RP3*cutting)) {
+                  DataBase.setDataBase('Z2 '+sender+' is money', money-RP3*cutting);
+                  DataBase.setDataBase('Z2 '+sender+' is Microsoft', Microsoft+cutting);
+                  replier.reply('주식 "Microsoft"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  return;
+              } else {
+                  break;
+              }
+
+            case 'Intel' :
+              cutting = Number(msg.replace('$구매 Intel ', ''));
+              if (isNaN(Number(cutting))) {
+                  replier.reply('숫자를 입력해주세요.');
+                  return;
+              } else if (money < Number(RP4*cutting)) {
+                  replier.reply('돈이 부족합니다.');
+                  return;
+              } else if (Intel+cutting >= 500) {
+                  replier.reply('500개 이상 보유 불가능합니다.');
+                  return;
+              } else if (cutting > 500) {
+                  replier.reply('한번에 500개 까지만 살수 있습니다.');
+                  return;
+              } else if (money >= Number(RP4*cutting)) {
+                  DataBase.setDataBase('Z2 '+sender+' is money', money-RP4*cutting);
+                  DataBase.setDataBase('Z2 '+sender+' is Intel', Intel+cutting);
+                  replier.reply('주식 "Intel"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  return;
+              } else {
+                  break;
+              }
+
+            case 'Nvidia' :
+              cutting = Number(msg.replace('$구매 Nvidia ', ''));
+              if (isNaN(Number(cutting))) {
+                  replier.reply('숫자를 입력해주세요.');
+                  return;
+              } else if (money < Number(RP5*cutting)) {
+                  replier.reply('돈이 부족합니다.');
+                  return;
+              } else if (Nvidia+cutting >= 500) {
+                  replier.reply('500개 이상 보유 불가능합니다.');
+                  return;
+              } else if (cutting > 500) {
+                  replier.reply('한번에 500개 까지만 살수 있습니다.');
+                  return;
+              } else if (money >= Number(RP5*cutting)) {
+                  DataBase.setDataBase('Z2 '+sender+' is money', money-RP5*cutting);
+                  DataBase.setDataBase('Z2 '+sender+' is Nvidia', Nvidia+cutting);
+                  replier.reply('주식 "Nvidia"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  return;
+              } else {
+                  break;
+              }
+
+            case 'Amazon' :
+              cutting = Number(msg.replace('$구매 Amazon ', ''));
+              if (isNaN(Number(cutting))) {
+                  replier.reply('숫자를 입력해주세요.');
+                  return;
+              } else if (money < Number(RP6*cutting)) {
+                  replier.reply('돈이 부족합니다.');
+                  return;
+              } else if (Amazon+cutting >= 500) {
+                  replier.reply('500개 이상 보유 불가능합니다.');
+                  return;
+              } else if (cutting > 500) {
+                  replier.reply('한번에 500개 까지만 살수 있습니다.');
+                  return;
+              } else if (money >= Number(RP6*cutting)) {
+                  DataBase.setDataBase('Z2 '+sender+' is money', money-RP6*cutting);
+                  DataBase.setDataBase('Z2 '+sender+' is Nvidia', Amazon+cutting);
+                  replier.reply('주식 "Amazon"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  return;
+              } else {
+                  break;
+              }
+
+            default :
+              replier.reply('존재 하지않는 주식 이름입니다.');
+              return;
+        }
     }
   }
 }
@@ -116,24 +286,24 @@ function onPause(activity) {}
 function onStop(activity) {}
 
 function setting (sender) {
-  DataBase.setDataBase('Z2 '+sender+' is money', 1000000);
+  DataBase.setDataBase('Z2 '+sender+' is money', 100000);
   DataBase.setDataBase('Z2 '+sender+' is Apple', 0);
   DataBase.setDataBase('Z2 '+sender+' is Samsung', 0);
   DataBase.setDataBase('Z2 '+sender+' is Microsoft', 0);
   DataBase.setDataBase('Z2 '+sender+' is Intel', 0);
   DataBase.setDataBase('Z2 '+sender+' is Nvidia', 0);
-  DataBase.setDataBase('Z2 '+sender+' is Amazon');
+  DataBase.setDataBase('Z2 '+sender+' is Amazon', 0);
 }
 
 function show_important (sender, replier) {
   text = '⎊돈 : '+DataBase.getDataBase('Z2 '+sender+' is money');
   text += '\n------------\n[ 보유한 주식의 종류와 개수 ]\n\n⎊Apple : '+DataBase.getDataBase('Z2 '+sender+' is Apple');
-  text += 'Samsung : '+DataBase.getDataBase('Z2 '+sender+' is Samsung');
-  text += 'Microsoft : '+DataBase.getDataBase('Z2 '+sender+' is Microsoft');
-  text += 'Intel : '+DataBase.getDataBase('Z2 '+sender+' is Intel');
-  text += 'Nvidia : '+DataBase.getDataBase('Z2 '+sender+' is Nvidia');
-  text += 'Amazon : '+DataBase.getDataBase('Z2 '+sender+' is Amazon');
+  text += '\n⎊Samsung : '+DataBase.getDataBase('Z2 '+sender+' is Samsung');
+  text += '\n⎊Microsoft : '+DataBase.getDataBase('Z2 '+sender+' is Microsoft');
+  text += '\n⎊Intel : '+DataBase.getDataBase('Z2 '+sender+' is Intel');
+  text += '\n⎊Nvidia : '+DataBase.getDataBase('Z2 '+sender+' is Nvidia');
+  text += '\n⎊Amazon : '+DataBase.getDataBase('Z2 '+sender+' is Amazon');
 
-  let ad = AD[Math.floor(Math.random() * 3)];
-  replier.reply('[ ⌜'+sender+'⌟ 님의 정보 ]\n\n'+allsee+text+'\n[ AD ]\n'+ad);
+  let ad = AD[Math.floor(Math.random() * 4)];
+  replier.reply('[ ⌜'+sender+'⌟ 님의 정보 ]\n'+allsee+text+'\n\n[ AD ]\n'+ad);
 }
