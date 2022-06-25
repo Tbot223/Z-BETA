@@ -82,12 +82,12 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               return;
             }
           case '주가' :
-            RP1 = Number(DataBase.getDataBase('RP1'));
-            RP2 = Number(DataBase.getDataBase('RP2'));
-            RP3 = Number(DataBase.getDataBase('RP3'));
-            RP4 = Number(DataBase.getDataBase('RP4'));
-            RP5 = Number(DataBase.getDataBase('RP5'));
-            RP6 = Number(DataBase.getDataBase('RP6'));
+            RP1 = DataBase.getDataBase('RP1');
+            RP2 = DataBase.getDataBase('RP2');
+            RP3 = DataBase.getDataBase('RP3');
+            RP4 = DataBase.getDataBase('RP4');
+            RP5 = DataBase.getDataBase('RP5');
+            RP6 = DataBase.getDataBase('RP6');
             replier.reply('[ 주가 ]\nApple : '+RP1+'\n-------------\nSamsung : '+RP2+'\n-------------\nMicrosoft : '+RP3+'\n-------------\nIntel : '+RP4+'\n-------------\nNvidia : '+RP5+'\n-------------\nAmazon : '+RP6);
             break;
           
@@ -116,13 +116,24 @@ function onPause(activity) {}
 function onStop(activity) {}
 
 function setting (sender) {
-  DataBase.setDataBase('Z2 '+sender+' is money', 20);
-  DataBase.setDataBase('Z2 '+sender+' is Z', 1);
+  DataBase.setDataBase('Z2 '+sender+' is money', 1000000);
+  DataBase.setDataBase('Z2 '+sender+' is Apple', 0);
+  DataBase.setDataBase('Z2 '+sender+' is Samsung', 0);
+  DataBase.setDataBase('Z2 '+sender+' is Microsoft', 0);
+  DataBase.setDataBase('Z2 '+sender+' is Intel', 0);
+  DataBase.setDataBase('Z2 '+sender+' is Nvidia', 0);
+  DataBase.setDataBase('Z2 '+sender+' is Amazon');
 }
 
 function show_important (sender, replier) {
   text = '⎊돈 : '+DataBase.getDataBase('Z2 '+sender+' is money');
-  text += '\n⎊주식 : '+DataBase.getDataBase('Z2 '+sender+' is Z');
+  text += '\n------------\n[ 보유한 주식의 종류와 개수 ]\n\n⎊Apple : '+DataBase.getDataBase('Z2 '+sender+' is Apple');
+  text += 'Samsung : '+DataBase.getDataBase('Z2 '+sender+' is Samsung');
+  text += 'Microsoft : '+DataBase.getDataBase('Z2 '+sender+' is Microsoft');
+  text += 'Intel : '+DataBase.getDataBase('Z2 '+sender+' is Intel');
+  text += 'Nvidia : '+DataBase.getDataBase('Z2 '+sender+' is Nvidia');
+  text += 'Amazon : '+DataBase.getDataBase('Z2 '+sender+' is Amazon');
 
-  replier.reply('[ ⌜'+sender+'⌟ 님의 정보 ]\n\n'+allsee+text);
+  let ad = AD[Math.floor(Math.random() * 3)];
+  replier.reply('[ ⌜'+sender+'⌟ 님의 정보 ]\n\n'+allsee+text+'\n[ AD ]\n'+ad);
 }
