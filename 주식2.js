@@ -45,7 +45,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
   if (blacklist.includes(sender))
     return;
   var message = msg.split(' ');
-  if (msg == '$가입') {
+  if (msg == '*가입') {
     if (joinbot.includes(sender)) {
       replier.reply('이미 가입 하셨습니다. 만약 가입하지 않으셨다면 다른 유저가 해당 닉네임을 사용하고 있을수 있습니다.');
     } else if (sender.includes('\n')||sender.includes('@')||sender.includes('\'')) {
@@ -56,7 +56,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
       replier.reply('성공적으로 등록되었습니다. (도움말은 $주식봇 도움말)');
     }
   }
-  if (message[0] == '$주식봇') {
+  if (message[0] == '*주식봇') {
     if (!joinbot.includes(sender)) {
       return;
     } else if (joinbot.includes(sender)) {
@@ -112,7 +112,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
       }
     }
   }
-  if (message[0] == '$구매') {
+  if (message[0] == '*구매') {
     if (!joinbot.includes(sender)) {
       return;
     } else if (joinbot.includes(sender)) {
@@ -132,7 +132,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
         switch(message[1]) {
 
             case 'Apple' :
-              cutting = Number(msg.replace('$구매 Apple ', ''));
+              cutting = Number(msg.replace('*구매 Apple ', ''));
               if (isNaN(Number(cutting))) {
                   replier.reply('숫자를 입력해주세요.');
                   return;
@@ -155,7 +155,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               }
             
             case 'Samsung' :
-              cutting = Number(msg.replace('$구매 Samsung ', ''));
+              cutting = Number(msg.replace('*구매 Samsung ', ''));
               if (isNaN(Number(cutting))) {
                   replier.reply('숫자를 입력해주세요.');
                   return;
@@ -178,7 +178,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               }
 
             case 'Microsoft' :
-              cutting = Number(msg.replace('$구매 Microsoft ', ''));
+              cutting = Number(msg.replace('*구매 Microsoft ', ''));
               if (isNaN(Number(cutting))) {
                   replier.reply('숫자를 입력해주세요.');
                   return;
@@ -201,7 +201,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               }
 
             case 'Intel' :
-              cutting = Number(msg.replace('$구매 Intel ', ''));
+              cutting = Number(msg.replace('*구매 Intel ', ''));
               if (isNaN(Number(cutting))) {
                   replier.reply('숫자를 입력해주세요.');
                   return;
@@ -224,7 +224,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               }
 
             case 'Nvidia' :
-              cutting = Number(msg.replace('$구매 Nvidia ', ''));
+              cutting = Number(msg.replace('*구매 Nvidia ', ''));
               if (isNaN(Number(cutting))) {
                   replier.reply('숫자를 입력해주세요.');
                   return;
@@ -247,7 +247,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               }
 
             case 'Amazon' :
-              cutting = Number(msg.replace('$구매 Amazon ', ''));
+              cutting = Number(msg.replace('*구매 Amazon ', ''));
               if (isNaN(Number(cutting))) {
                   replier.reply('숫자를 입력해주세요.');
                   return;
