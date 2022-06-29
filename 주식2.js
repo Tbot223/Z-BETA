@@ -21,7 +21,7 @@ Z2R = setInterval(function() {
     DataBase.setDataBase('RP'+ii, RP1+RO1);
     if (RP1 < 10000) {
       DataBase.setDataBase('RP'+ii, 10000);
-      DataBase.setDataBase('RO'+ii, 'ReSet');
+      DataBase.setDataBase('RO'+ii, 0);
     }
   }
 }, 30000);
@@ -264,6 +264,133 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
                   DataBase.setDataBase('Z2 '+sender+' is money', money-RP6*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Nvidia', Amazon+cutting);
                   replier.reply('주식 "Amazon"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  return;
+              } else {
+                  break;
+              }
+
+            default :
+              replier.reply('존재 하지않는 주식 이름입니다.');
+              return;
+        }
+    }
+  }
+  if (message[0] == '*판매') {
+    if (!joinbot.includes(sender)) {
+      return;
+    } else if (joinbot.includes(sender)) {
+        RP1 = Number(DataBase.getDataBase('RP1'));
+        RP2 = Number(DataBase.getDataBase('RP2'));
+        RP3 = Number(DataBase.getDataBase('RP3'));
+        RP4 = Number(DataBase.getDataBase('RP4'));
+        RP5 = Number(DataBase.getDataBase('RP5'));
+        RP6 = Number(DataBase.getDataBase('RP6'));
+        money = Number(DataBase.getDataBase('Z2 '+sender+' is money'));
+        Apple = Number(DataBase.getDataBase('Z2 '+sender+' is Apple'));
+        Samsung = Number(DataBase.getDataBase('Z2 '+sender+' is Samsung'));
+        Microsoft = Number(DataBase.getDataBase('Z2 '+sender+' is Microsoft'));
+        Intel = Number(DataBase.getDataBase('Z2 '+sender+' is Intel'));
+        Nvidia = Number(DataBase.getDataBase('Z2 '+sender+' is Nvidia'));
+        Amazon = Number(DataBase.getDataBase('Z2 '+sender+' is Amazon'));
+        switch(message[1]) {
+
+            case 'Apple' :
+              cutting = Number(msg.replace('*판매 Apple ', ''));
+              if (isNaN(Number(cutting))) {
+                  replier.reply('숫자를 입력해주세요.');
+                  return;
+              } else if (Apple < cutting) {
+                  replier.reply('보유한 주식의 개수가 부족합니다.');
+                  return;
+              } else if (0 < Apple) {
+                  DataBase.setDataBase('Z2 '+sender+' is money', money+RP1*cutting);
+                  DataBase.setDataBase('Z2 '+sender+' is Apple', Apple-cutting);
+                  replier.reply('주식 "Apple"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  return;
+              } else {
+                  break;
+              }
+            
+            case 'Samsung' :
+              cutting = Number(msg.replace('*판매 Samsung ', ''));
+              if (isNaN(Number(cutting))) {
+                  replier.reply('숫자를 입력해주세요.');
+                  return;
+              } else if (cutting > Samsung) {
+                  replier.reply('보유한 주식의 개수가 부족합니다.');
+                  return;
+              } else if (0 < Samsung) {
+                  DataBase.setDataBase('Z2 '+sender+' is money', money+RP2*cutting);
+                  DataBase.setDataBase('Z2 '+sender+' is Samsung', Samsung-cutting);
+                  replier.reply('주식 "Samsung"을 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  return;
+              } else {
+                  break;
+              }
+
+            case 'Microsoft' :
+              cutting = Number(msg.replace('*판매 Microsoft ', ''));
+              if (isNaN(Number(cutting))) {
+                  replier.reply('숫자를 입력해주세요.');
+                  return;
+              } else if (cutting > Microsoft) {
+                replier.reply('보유한 주식의 개수가 부족합니다.');
+                return;
+              } else if (0 < Microsoft) {
+                  DataBase.setDataBase('Z2 '+sender+' is money', money+RP3*cutting);
+                  DataBase.setDataBase('Z2 '+sender+' is Microsoft', Microsoft-cutting);
+                  replier.reply('주식 "Microsoft"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  return;
+              } else {
+                  break;
+              }
+
+            case 'Intel' :
+              cutting = Number(msg.replace('*판매 Intel ', ''));
+              if (isNaN(Number(cutting))) {
+                  replier.reply('숫자를 입력해주세요.');
+                  return;
+              } else if (cutting > 500) {
+                  replier.reply('보유한 주식의 개수가 부족합니다.');
+                  return;
+              } else if (0 < Intel) {
+                  DataBase.setDataBase('Z2 '+sender+' is money', money+RP4*cutting);
+                  DataBase.setDataBase('Z2 '+sender+' is Intel', Intel-cutting);
+                  replier.reply('주식 "Intel"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  return;
+              } else {
+                  break;
+              }
+
+            case 'Nvidia' :
+              cutting = Number(msg.replace('*판매 Nvidia ', ''));
+              if (isNaN(Number(cutting))) {
+                  replier.reply('숫자를 입력해주세요.');
+                  return;
+              } else if (cutting > Nvidia) {
+                  replier.reply('보유한 주식의 개수가 부족합니다.');
+                  return;
+              } else if (0 < Nvidia) {
+                  DataBase.setDataBase('Z2 '+sender+' is money', money+RP5*cutting);
+                  DataBase.setDataBase('Z2 '+sender+' is Nvidia', Nvidia-cutting);
+                  replier.reply('주식 "Nvidia"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  return;
+              } else {
+                  break;
+              }
+
+            case 'Amazon' :
+              cutting = Number(msg.replace('*판매 Amazon ', ''));
+              if (isNaN(Number(cutting))) {
+                  replier.reply('숫자를 입력해주세요.');
+                  return;
+              } else if (cutting > 500) {
+                  replier.reply('보유한 주식의 개수가 부족합니다.');
+                  return;
+              } else if (0 < Amazon) {
+                  DataBase.setDataBase('Z2 '+sender+' is money', money+RP6*cutting);
+                  DataBase.setDataBase('Z2 '+sender+' is Nvidia', Amazon-cutting);
+                  replier.reply('주식 "Amazon"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
                   return;
               } else {
                   break;
