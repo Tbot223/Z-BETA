@@ -15,8 +15,8 @@ Z2ren = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
 Z2R = setInterval(function() {
   for (let ii = 1; ii < 7; ii++) {
     RE1 = Z2ren[Math.floor(Math.random() * 21)];
-    RP1 = parseInt(DataBase.getDataBase('RP'+ii));
-    RO1 = parseInt(RE1 / 100 * RP1);
+    RP1 = Math.floor(DataBase.getDataBase('RP'+ii));
+    RO1 = Math.floor(RE1 / 100 * RP1);
     DataBase.setDataBase('RO'+ii, RO1);
     DataBase.setDataBase('RP'+ii, RP1+RO1);
     if (RP1 < 10000) {
