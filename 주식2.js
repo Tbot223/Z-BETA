@@ -1,6 +1,6 @@
 const scriptName = "주식 2";
 var allsee = new Array(1000).join(String.fromCharCode(847));
-const AD = ['주가가 올라갈수록 변동폭이 커집니다!', '환전기능이 생길꺼라는 소문이 있다던데?', '도움말은 "$주식봇 도움말" !', '주가옆에 [] 안에 있는 숫자는 변동폭이랍니다!'];
+const AD = ['주가가 올라갈수록 변동폭이 커집니다!', '환전기능이 생길꺼라는 소문이 있다던데?', '도움말은 "*주식봇 도움말" !', '주가옆에 [] 안에 있는 숫자는 변동폭이랍니다!'];
 Z2ren = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 /**
  * (string) room
@@ -53,7 +53,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
     } else {
       DataBase.setDataBase('주식게임-2 가입리스트', DataBase.getDataBase('주식게임-2 가입리스트')+'\n'+sender);
       setting(sender);
-      replier.reply('성공적으로 등록되었습니다. (도움말은 $주식봇 도움말)');
+      replier.reply('성공적으로 등록되었습니다. (도움말은 *주식봇 도움말)');
     }
   }
   if (message[0] == '*주식봇') {
@@ -69,7 +69,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
             }
           
           case '정보' :
-            let username = msg.replace('$주식봇 정보 ', '');
+            let username = msg.replace('*주식봇 정보 ', '');
             if (username.charAt(0) == '@')
               username = username.replace('@', '');
             if (!joinbot.includes(username)) {
@@ -99,7 +99,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
           
           case '도움말' :
             let ad = AD[Math.floor(Math.random() * 4)]
-            replier.reply('[ 주식봇 도움말 ]\n\n'+allsee+'$주식봇 [내정보 , 정보 (플레이어 이름), 주가, code]\n$구매 (주식 종류) (구매할 수)\n+[ AD ]\n'+ad);
+            replier.reply('[ 주식봇 도움말 ]\n\n'+allsee+'*주식봇 [내정보 , 정보 (플레이어 이름), 주가, code]\n*주식봇 (주식 종류) (구매할 개수)\n*판매 (주식 종류) (판매할 개수)\n+[ AD ]\n'+ad);
             break;
 
           case 'code' :
@@ -148,7 +148,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               } else if (money >= Number(RP1*cutting)) {
                   DataBase.setDataBase('Z2 '+sender+' is money', money-RP1*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Apple', Apple+cutting);
-                  replier.reply('주식 "Apple"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  replier.reply('주식 "Apple"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 *주식봇 내정보)');
                   return;
               } else {
                   break;
@@ -171,7 +171,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               } else if (money >= Number(RP2*cutting)) {
                   DataBase.setDataBase('Z2 '+sender+' is money', money-RP2*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Samsung', Samsung+cutting);
-                  replier.reply('주식 "Samsung"을 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  replier.reply('주식 "Samsung"을 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 *주식봇 내정보)');
                   return;
               } else {
                   break;
@@ -194,7 +194,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               } else if (money >= Number(RP3*cutting)) {
                   DataBase.setDataBase('Z2 '+sender+' is money', money-RP3*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Microsoft', Microsoft+cutting);
-                  replier.reply('주식 "Microsoft"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  replier.reply('주식 "Microsoft"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 *주식봇 내정보)');
                   return;
               } else {
                   break;
@@ -217,7 +217,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               } else if (money >= Number(RP4*cutting)) {
                   DataBase.setDataBase('Z2 '+sender+' is money', money-RP4*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Intel', Intel+cutting);
-                  replier.reply('주식 "Intel"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  replier.reply('주식 "Intel"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 *주식봇 내정보)');
                   return;
               } else {
                   break;
@@ -240,7 +240,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               } else if (money >= Number(RP5*cutting)) {
                   DataBase.setDataBase('Z2 '+sender+' is money', money-RP5*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Nvidia', Nvidia+cutting);
-                  replier.reply('주식 "Nvidia"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  replier.reply('주식 "Nvidia"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 *주식봇 내정보)');
                   return;
               } else {
                   break;
@@ -263,7 +263,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               } else if (money >= Number(RP6*cutting)) {
                   DataBase.setDataBase('Z2 '+sender+' is money', money-RP6*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Nvidia', Amazon+cutting);
-                  replier.reply('주식 "Amazon"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  replier.reply('주식 "Amazon"를 "'+cutting+'개 구매하셨습니다.\n(자세한 정보는 *주식봇 내정보)');
                   return;
               } else {
                   break;
@@ -305,7 +305,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               } else if (0 < Apple) {
                   DataBase.setDataBase('Z2 '+sender+' is money', money+RP1*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Apple', Apple-cutting);
-                  replier.reply('주식 "Apple"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  replier.reply('주식 "Apple"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 *주식봇 내정보)');
                   return;
               } else {
                   break;
@@ -322,7 +322,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               } else if (0 < Samsung) {
                   DataBase.setDataBase('Z2 '+sender+' is money', money+RP2*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Samsung', Samsung-cutting);
-                  replier.reply('주식 "Samsung"을 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  replier.reply('주식 "Samsung"을 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 *주식봇 내정보)');
                   return;
               } else {
                   break;
@@ -339,7 +339,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               } else if (0 < Microsoft) {
                   DataBase.setDataBase('Z2 '+sender+' is money', money+RP3*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Microsoft', Microsoft-cutting);
-                  replier.reply('주식 "Microsoft"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  replier.reply('주식 "Microsoft"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 *주식봇 내정보)');
                   return;
               } else {
                   break;
@@ -356,7 +356,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               } else if (0 < Intel) {
                   DataBase.setDataBase('Z2 '+sender+' is money', money+RP4*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Intel', Intel-cutting);
-                  replier.reply('주식 "Intel"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  replier.reply('주식 "Intel"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 *주식봇 내정보)');
                   return;
               } else {
                   break;
@@ -373,7 +373,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               } else if (0 < Nvidia) {
                   DataBase.setDataBase('Z2 '+sender+' is money', money+RP5*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Nvidia', Nvidia-cutting);
-                  replier.reply('주식 "Nvidia"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  replier.reply('주식 "Nvidia"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 *주식봇 내정보)');
                   return;
               } else {
                   break;
@@ -390,7 +390,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               } else if (0 < Amazon) {
                   DataBase.setDataBase('Z2 '+sender+' is money', money+RP6*cutting);
                   DataBase.setDataBase('Z2 '+sender+' is Nvidia', Amazon-cutting);
-                  replier.reply('주식 "Amazon"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 $주식봇 내정보)');
+                  replier.reply('주식 "Amazon"를 "'+cutting+'개 판매하셨습니다.\n(자세한 정보는 *주식봇 내정보)');
                   return;
               } else {
                   break;
