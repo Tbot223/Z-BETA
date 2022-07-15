@@ -105,7 +105,12 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
           case 'code' :
             replier.reply('https://github.com/Tbot223/Z-BETA');
             break;
-
+            
+          case '환전' :
+            let cutting = msg.replace('*주식봇 환전 ', '');
+            
+          case '환율' :
+            replier.reply('환율은 "1USD($) = 1200WON"입니다.');
           default :
             replier.reply('해당 명령어는 존재하지 않습니다, 다시 입력해주세요.');
             break;
@@ -400,7 +405,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
               replier.reply('존재 하지않는 주식 이름입니다.');
               return;
         }
-    }
+    } 
   }
 }
 
